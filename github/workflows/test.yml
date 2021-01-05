@@ -1,0 +1,29 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master, develop]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+    - name: Initialize mandatory git config
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email noreply@github.com
+    - name: Push to release branch
+      run: |
+        echo ${steps.extract_branch.outputs.branch} >> test.txt
+        git checkout release/${steps.extract_branch.outputs.branch}
+        git add .
+        git commit -m "Automated build frontend"
+        git push origin release/${steps.extract_branch.outputs.branch}
+    - 
