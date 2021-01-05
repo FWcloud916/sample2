@@ -23,4 +23,4 @@ jobs:
         echo ${GITHUB_REF#refs/heads/} >> test.txt
         git add .
         git commit -m "Automated build frontend"
-        git push origin release/${GITHUB_REF#refs/heads/}
+        git push origin release/${GITHUB_REF#refs/heads/} -f
