@@ -20,7 +20,7 @@ jobs:
         git fetch
         git checkout release/${GITHUB_REF#refs/heads/} %s
         git reset origin/${GITHUB_REF#refs/heads/} --hard
-        echo ${GITHUB_REF#refs/heads/} $(date +'%Y-%m-%d') >> test.txt
+        echo ${GITHUB_REF#refs/heads/} > test.txt
         git add .
         git commit -m "Automated build frontend"
         git push origin release/${GITHUB_REF#refs/heads/} -f
