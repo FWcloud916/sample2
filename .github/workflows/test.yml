@@ -18,7 +18,8 @@ jobs:
     - name: Push to release branch
       run: |
         echo ${GITHUB_REF#refs/heads/} >> test.txt
-        git checkout -b release/${GITHUB_REF#refs/heads/}
+        git fetch
+        git checkout release/${GITHUB_REF#refs/heads/}
         git add .
         git commit -m "Automated build frontend"
         git push origin release/${GITHUB_REF#refs/heads/}
