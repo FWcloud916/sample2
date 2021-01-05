@@ -17,9 +17,10 @@ jobs:
         git config user.email noreply@github.com
     - name: Push to release branch
       run: |
-        echo ${GITHUB_REF#refs/heads/} >> test.txt
         git fetch
         git checkout release/${GITHUB_REF#refs/heads/}
+        git reset origin/${GITHUB_REF#refs/heads/} --hard
+        echo ${GITHUB_REF#refs/heads/} >> test.txt
         git add .
         git commit -m "Automated build frontend"
         git push origin release/${GITHUB_REF#refs/heads/}
