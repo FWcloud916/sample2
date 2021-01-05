@@ -26,4 +26,3 @@ jobs:
         git add .
         git commit -m "Automated build frontend"
         git push origin release/${steps.extract_branch.outputs.branch}
-    - 
