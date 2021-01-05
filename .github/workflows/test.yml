@@ -18,7 +18,7 @@ jobs:
     - name: Push to release branch
       run: |
         git fetch
-        git checkout release/${GITHUB_REF#refs/heads/}
+        git checkout release/${GITHUB_REF#refs/heads/} %s
         git reset origin/${GITHUB_REF#refs/heads/} --hard
         echo ${GITHUB_REF#refs/heads/} >> test.txt
         git add .
